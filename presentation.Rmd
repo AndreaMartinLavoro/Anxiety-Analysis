@@ -1,4 +1,5 @@
 ---
+background: "img/logo.png"
 title: "Project 147800"
 author: "Martin Andrea"
 date: "a.s. 2020/2021"
@@ -12,6 +13,8 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+url <- "dataset.csv"
+myData <- read.csv(url)
 ```
 
 ## R Markdown
@@ -20,10 +23,11 @@ This is an R Markdown presentation. Markdown is a simple formatting syntax for a
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 
-## Bash Test
+## Dataset Test
 
-```{bash}
-ls
+```{r echo=TRUE}
+summary(myData)
+dim(iris)
 ```
 
 ## Slide with Bullets
@@ -44,3 +48,7 @@ summary(cars)
 plot(pressure)
 ```
 
+##
+
+<div style="text-align:center;vertical-align:middle;"><img width = "800" height = "230" src="img/uniud.png"/></div>
+<div style="text-align:center;vertical-align:middle;"><img width = "730" height = "260" src="img/rstudio.png"/></div>
