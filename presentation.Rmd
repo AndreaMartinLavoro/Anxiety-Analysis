@@ -50,5 +50,6 @@ plot(pressure)
 
 ##
 
-<div style="text-align:center;vertical-align:middle;"><img width = "800" height = "230" src="img/uniud.png"/></div>
-<div style="text-align:center;vertical-align:middle;"><img width = "730" height = "260" src="img/rstudio.png"/></div>
+<div style="text-align:center;vertical-align:middle;">
+<img width = "800" height = "230" src="img/uniud.png"/>
+</div>
