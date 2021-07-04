@@ -33,7 +33,15 @@ ls
 
 ```{r echo=TRUE}
 summary(myData)
+str(myData$text)
 dim(myData)
+nrow(myData)
+ncol(myData)
+names(myData)
+class(myData)
+head(myData,7)
+tail(myData,7)
+
 ```
 
 ## Slide with Bullets
@@ -48,11 +56,13 @@ dim(myData)
 summary(cars)
 ```
 
-## Slide with Plot
+## Text mining
 
 ```{r pressure}
-plot(pressure)
+
 ```
+
+
 
 ##
 
