@@ -13,24 +13,35 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library("tm")
+library("SnowballC")
+library("wordcloud")
+library("RColorBrewer")
+library("syuzhet")
+library("ggplot2")
 url <- "dataset/dataset.csv"
 myData <- read.csv(url)
 
 ```
-## R Markdown
+## Intro
 
 This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 
-## BASH Test
-
+## Il progetto 
+è composto dai seguenti file e directory
 ```{bash echo=TRUE}
 ls
 ```
+i file e le directory fondamentali sono :
 
-## Dataset Test
+- dataset - contenente i dataset da analizzare + i dataset elaborati
+- gen_art - contenente lo sketch generatore + l'immagine generata
+- presentation.Rmd - la presentazione in R markdown
+- project.R - lo script R utilizzato per la prima stesura del codice di analisi prima dell'inserimento nella presentazione in R markdown
 
+## Dataset
 ```{r echo=TRUE}
 summary(myData)
 str(myData$text)
@@ -44,28 +55,39 @@ tail(myData,7)
 
 ```
 
-## Slide with Bullets
-
-- Uno
-- Due
-- Tre
-
-## Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
-```
+## Analisi Esplorativa
 
 ## Text mining
 
 ```{r pressure}
-
+text <- readLines("dataset/dataset_for_textmining.txt")
+TextDoc <- Corpus(VectorSource(text))
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
+TextDoc <- tm_map(TextDoc, toSpace, "/")
+TextDoc <- tm_map(TextDoc, toSpace, "@")
+TextDoc <- tm_map(TextDoc, toSpace, "\\|")
+TextDoc <- tm_map(TextDoc, content_transformer(tolower))
+TextDoc <- tm_map(TextDoc, removeNumbers)
+TextDoc <- tm_map(TextDoc, removeWords, stopwords("english"))
+TextDoc <- tm_map(TextDoc, removeWords, c("s", "company", "team")) 
+TextDoc <- tm_map(TextDoc, removePunctuation)
+TextDoc <- tm_map(TextDoc, stripWhitespace)
+TextDoc <- tm_map(TextDoc, stemDocument)
+TextDoc_dtm <- TermDocumentMatrix(TextDoc)
+dtm_m <- as.matrix(TextDoc_dtm)
+dtm_v <- sort(rowSums(dtm_m),decreasing=TRUE)
+dtm_d <- data.frame(word = names(dtm_v),freq=dtm_v)
+head(dtm_d, 40)
+barplot(dtm_d[30:40,]$freq, las = 2, names.arg = dtm_d[30:40,]$word,
+        col ="lightgreen", main ="Top 5 most frequent words",
+        ylab = "Word frequencies")
+set.seed(1234)
+wordcloud(words = dtm_d$word, freq = dtm_d$freq, min.freq = 5,
+          max.words=200, random.order=FALSE, rot.per=0.40, 
+          colors=brewer.pal(8, "Dark2"))
 ```
 
-
-
 ##
-
 <div style="text-align:center;vertical-align:middle;">
 <img width = "800" height = "230" src="img/uniud.png"/>
 </div>

@@ -34,7 +34,7 @@ library("syuzhet")
 library("ggplot2")
 
 # Read the text file from local machine , choose file interactively
-text <- readLines(file.choose())
+text <- readLines("dataset/dataset_for_textmining.txt")#file.choose() - per scegliere interattivamente il file
 # Load the data as a corpus
 TextDoc <- Corpus(VectorSource(text))
 
