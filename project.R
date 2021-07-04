@@ -129,17 +129,22 @@ td_new2<-td_new[1:8,]
 quickplot(sentiment, data=td_new2, weight=count, geom="bar", fill=sentiment, ylab="count")+ggtitle("Survey sentiments")
 
 tail(myData,7)
+
 # che tipologie di ansia, quante ?
 dataForGen = data.frame(myData[, c('subreddit')])
 save(dataForGen, file="dataForGen.RData")
 load("dataForGen.RData")
 head(dataForGen,100)
 colnames(dataForGen)
-vetForGen = dataForGen
-vetForGen[2,1]
 
 i = 0
-for (i in 10 : (i + 1)){
-  print(vetForGen[i,1])
+c = 0
+lung = nrow(dataForGen)
+for (i in lung : (i + 1)){
+  if(dataForGen[i,1]=="survivorsofabuse")
+    c = c+1
 }
-#write.csv(myData[, c('subreddit')],'dataset/dataset_for_generativeart.csv')
+print(c)
+
+#crea il dataset.csv da utilizzare con lo sketch in processing per generare un opera
+write.csv(myData[, c('subreddit')],'gen_art/dataset_for_genart.csv')
