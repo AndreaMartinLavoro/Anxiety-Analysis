@@ -24,12 +24,29 @@ myData <- read.csv(url)
 
 ```
 ## Intro
+Troppe informazioni, troppo potere alla tecnologia e la velocità con cui noi assimiliamo informazioni grazie ad essa è spaventosa.
+Ciò può procurare stress e ansia.
+Perchè non chiedere aiuto su Reddit?
 
-
+## Reddit non solo un forum
+Reddit è un social news aggregator, un misto di piattaforma di discussione e distributore di link, diviso in forum, i cosiddetti subreddit. Gli utenti, i redditor, sono creatori di contenuti, consumatori e curatori. Utilizzando un sistema a punti composto da upvotes e downvotes, la comunità determina quali contenuti e discussioni sono importanti: questi verranno visualizzati nella parte superiore del feed. La piattaforma è in gran parte autogestita, i moderatori fungono da guardie del forum.
+<div style="text-align:center;vertical-align:middle;">
+<img width = "500" height = "150" src="img/reddit.png"/>
+</div>
 
 ## Dataset
+Un set di dati sui social media multidominio per identificare lo stress da cinque diverse categorie di comunità Reddit.
 
+Gli argomenti dei post catturati nel dataset sono :
 
+- anxiety
+- stress
+- domesticviolence
+- assistance
+- relationships
+- survivorsofabuse
+- ptsd (stress post traumatico)
+- homeless
 
 ## Il progetto 
 è composto dai seguenti file e directory
@@ -43,55 +60,270 @@ i file e le directory fondamentali sono :
 - presentation.Rmd - la presentazione in R markdown
 - project.R - lo script R utilizzato per la prima stesura del codice di analisi prima dell'inserimento nella presentazione in R markdown
 
-## Analisi Esplorativa
-
+## Analisi Esplorativay
+Una prima panoramica dei nostri dati
 ```{r echo=TRUE}
 summary(myData)
-str(myData$text)
-dim(myData)
-nrow(myData)
-ncol(myData)
-names(myData)
-class(myData)
-head(myData,7)
-tail(myData,7)
+```
 
+str() ci dice a che categoria appartiene ognuna delle variabili, che tipo di oggetto abbiamo, il numero di casi e di variabili.
+```{r echo=TRUE}
+str(myData$text)
+```
+
+Ora verifichiamo la grandezza del nostro dataset
+```{r echo=TRUE}
+dim(myData)
+```
+
+```{r echo=TRUE}
+nrow(myData)
+```
+
+```{r echo=TRUE}
+ncol(myData)
+```
+
+Ora scopriamo i nomi delle variabili
+```{r echo=TRUE}
+names(myData)
+```
+
+E per avere un idea un po' più chiara dei dati da utilizzare 
+```{r echo=TRUE}
+head(myData,3)
+```
+
+```{r echo=TRUE}
+tail(myData,3)
+```
+
+## Preparo il dataframe
+```{r echo = TRUE , warning=FALSE}
+dataForGen = data.frame(myData[, c('subreddit')])
+```
+
+```{r echo = FALSE , warning=FALSE}
+save(dataForGen, file="dataForGen.RData")
+load("dataForGen.RData")
+```
+
+```{r echo = TRUE , warning=FALSE}
+head(dataForGen,100)
+```
+
+```{r echo = TRUE , warning=FALSE}
+colnames(dataForGen)
+```
+
+## Analisi nello specifico
+Tra i vari argomenti dei post, quale è il dominante?
+```{r echo = FALSE , warning=FALSE}
+anxiety = 0
+stress = 0
+domesticviolence = 0
+assistance = 0
+relationships = 0
+survivorsofabuse = 0
+ptsd = 0
+homeless = 0
+i = 0
+```
+
+Calcolo la frequenza degli Argomenti (programmabilità del linguaggio R)
+```{r echo = TRUE , warning=FALSE}
+lung = nrow(dataForGen)
+for (i in lung : (i + 1)){
+  if(dataForGen[i,1]=="anxiety"){anxiety = anxiety+1}
+  if(dataForGen[i,1]=="stress"){stress = stress+1}
+  if(dataForGen[i,1]=="domesticviolence"){domesticviolence = domesticviolence+1}
+  if(dataForGen[i,1]=="assistance"){assistance = assistance+1}
+  if(dataForGen[i,1]=="relationships"){relationships = relationships+1}
+  if(dataForGen[i,1]=="survivorsofabuse"){survivorsofabuse = survivorsofabuse+1}
+  if(dataForGen[i,1]=="ptsd"){ptsd = ptsd+1}
+  if(dataForGen[i,1]=="homeless"){homeless = homeless+1}
+}
+```
+
+creo la matrice e la mostro grficamente con un barplot
+```{r echo = TRUE , warning=FALSE}
+matrice = matrix(c(anxiety, stress, domesticviolence, assistance, relationships, survivorsofabuse, ptsd, homeless),ncol = 1
+)
+rownames(matrice) = c("anxiety", "stress", "domesticviolence", "assistance", "relationships", "survivorsofabuse", "ptsd", "homeless")
+```
+
+```{r echo = FALSE , warning=FALSE}
+par(las=2)
+barplot(matrice[,1], main="Frequnza degli argomenti", horiz=TRUE,
+        names.arg=c("anxiety", "stress", "domesticviolence", "assistance", "relationships", "survivorsofabuse", "ptsd", "homeless"))
 ```
 
 ## Text mining
+Quali sono le parole più usate?
+Preparazione
+```{r echo = TRUE , warning=FALSE}
+write.csv(myData[, c('text')],'dataset/dataset_for_textmining.txt')
+```
 
-```{r pressure}
+Importazione
+```{r echo = TRUE , warning=FALSE}
+# Leggo il file
 text <- readLines("dataset/dataset_for_textmining.txt")
+# Carico i dati
 TextDoc <- Corpus(VectorSource(text))
+```
+
+Pulisco i dati
+```{r echo = TRUE , warning=FALSE}
 toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
 TextDoc <- tm_map(TextDoc, toSpace, "/")
 TextDoc <- tm_map(TextDoc, toSpace, "@")
 TextDoc <- tm_map(TextDoc, toSpace, "\\|")
+# Converto tutto in minuscolo
 TextDoc <- tm_map(TextDoc, content_transformer(tolower))
+# Rimuovo i numeri
 TextDoc <- tm_map(TextDoc, removeNumbers)
+# Rimuovo le stopwords in inglese
 TextDoc <- tm_map(TextDoc, removeWords, stopwords("english"))
-TextDoc <- tm_map(TextDoc, removeWords, c("s", "company", "team")) 
+# Rimuovo le parole che non voglio analizzare
+TextDoc <- tm_map(TextDoc, removeWords, c("one", "can", "see")) 
+# Rimuovo la punteggiatura
 TextDoc <- tm_map(TextDoc, removePunctuation)
+# Rimuovo gli spazi bianchi in eccesso
 TextDoc <- tm_map(TextDoc, stripWhitespace)
+# Text stemming - which reduces words to their root form
 TextDoc <- tm_map(TextDoc, stemDocument)
+```
+
+Preparo la matrice
+```{r echo = TRUE , warning=FALSE}
 TextDoc_dtm <- TermDocumentMatrix(TextDoc)
 dtm_m <- as.matrix(TextDoc_dtm)
+#Ordino per numero di volte in cui la parola appare
 dtm_v <- sort(rowSums(dtm_m),decreasing=TRUE)
 dtm_d <- data.frame(word = names(dtm_v),freq=dtm_v)
-head(dtm_d, 40)
-barplot(dtm_d[30:40,]$freq, las = 2, names.arg = dtm_d[30:40,]$word,
-        col ="lightgreen", main ="Top 5 most frequent words",
-        ylab = "Word frequencies")
+```
+
+```{r echo = FALSE , warning=FALSE}
+barplot(dtm_d[0:10,]$freq, las = 2, names.arg = dtm_d[0:10,]$word,
+        col ="lightgreen", main ="Le 10 parole più usate",
+        ylab = "Frequenza")
+set.seed(1234)
+```
+
+L'arte della comunicazione
+```{r echo = FALSE , warning=FALSE}
 set.seed(1234)
 wordcloud(words = dtm_d$word, freq = dtm_d$freq, min.freq = 5,
           max.words=200, random.order=FALSE, rot.per=0.40, 
           colors=brewer.pal(8, "Dark2"))
 ```
 
-## Generative Art
+- Sii onesto, non provare nemmeno a barare
+- Sii efficace, massimizza l'entropia delle informazioni
+- Sii artistico, rendilo bello
 
-```{}
+## Generative Art
+<h5>E se volessimo rispondere alla domanda qui sotto ?</h5>
+<h3>Quale è il volto dell'ansia?</h3>
+<h5>Potrebbe venirci in aiuto l'Arte Generativa</h5>
+<div style="text-align:center;vertical-align:middle;">
+<img  width = "50%" height = "auto" src="img/genart.png"/>
+</div>
+
+```{r echo = TRUE , warning=FALSE}
+#crea il dataset.csv da utilizzare con lo sketch in processing per generare un opera
+write.csv(myData[, c('subreddit')],'gen_art/dataset_for_genart.csv')
 ```
+
+<h3>Questo è il codice che ha generato l'immagine qui sopra:</h3>
+```{}
+Table table;
+int gridSize = 100;
+int iterations = 12;
+int rotation = 10;
+String stx = "";
+
+void setup() {
+   size(600, 600);
+   background(255);
+   stroke(0, 80);
+   rectMode(CENTER);
+   noLoop();
+   //carico il "dataset"
+   table = loadTable("dataset_for_genart.csv", "header");
+
+}
+void draw() {
+  for (int x = gridSize/2; x < width; x+=gridSize) {
+    for (int y = gridSize/2; y < height; y+=gridSize) {
+      float rectSize = gridSize-10;
+      pushMatrix();
+      translate(x, y);
+      //genero con il primo algoritmo il background
+      for (TableRow row : table.rows()) {
+          stx = row.getString("x");
+          if(stx == "assistance"){
+             for (int i = 0; i < iterations; i++) {
+                fill (0,random(20));
+                rect(0, 0, rectSize, rectSize);
+                rectSize = rectSize / (sin(radians(rotation)) + cos(radians(rotation)));
+                rotate(radians(rotation));
+            }
+          }
+          if(stx == "relationships"){
+            for (int i = 0; i < iterations; i++) {
+                fill (0,random(30));
+                rect(1, 5, rectSize, rectSize);
+                rectSize = rectSize / (sin(radians(rotation)) + cos(radians(rotation)));
+                rotate(radians(rotation));
+            }
+          }
+          else{
+            for (int i = 0; i < iterations; i++) {
+                fill (0,random(10));
+                rect(3, 7, rectSize, rectSize);
+                rectSize = rectSize / (sin(radians(rotation)) + cos(radians(rotation)));
+                rotate(radians(rotation));
+            }
+          }   
+      }
+      popMatrix();
+    }
+  }
+  //genero con il secondo algoritmo il foreground
+  for (TableRow row : table.rows()) {
+      stx = row.getString("x");
+      if (stx == "ptsd"){
+        for (int x = gridSize; x < width; x += gridSize) {
+          for (int y = gridSize; y < height; y += gridSize) {
+              float circleSize = random(gridSize*0.3, gridSize);
+              fill(random(255));
+              ellipse(x, y, circleSize, circleSize);
+      }}}
+      if (stx == "survivorsofabuse"){
+        for (int x = gridSize; x < width; x += gridSize) {
+          for (int y = gridSize; y < height; y += gridSize) {
+              float circleSize = random(gridSize*0.3, gridSize);
+              fill(random(144));
+              ellipse(y, x, circleSize, circleSize);
+      }}}
+      else{
+        for (int x = gridSize; x < width; x += gridSize) {
+          for (int y = gridSize; y < height; y += gridSize) {
+              float circleSize = random(gridSize*0.3, gridSize);
+              fill(random(221));
+              ellipse(y+1, x, circleSize, circleSize);
+      }}}
+  }
+}
+```
+
+## Note
+
+- il dataset è stato scaricato da keggle ed è stato reso pubblico dall'utente con nome Ruchi Bhatia (https://www.kaggle.com/ruchi798/stress-analysis-in-social-media)
+- il codice relativo alla generative art è stato parzialmente preso da un manuale di processing
+- il resto delle nozioni sono state fornite dal corso di Fundamenti di Scienza dei Dati presso l'ateneo UNIUD
 
 ##
 <div style="text-align:center;vertical-align:middle;">

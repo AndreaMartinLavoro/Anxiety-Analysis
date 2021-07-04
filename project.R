@@ -65,9 +65,6 @@ dtm_m <- as.matrix(TextDoc_dtm)
 # Sort by descearing value of frequency
 dtm_v <- sort(rowSums(dtm_m),decreasing=TRUE)
 dtm_d <- data.frame(word = names(dtm_v),freq=dtm_v)
-# Display the top 5 most frequent words
-head(dtm_d, 40)
-
 # Plot the most frequent words
 barplot(dtm_d[30:40,]$freq, las = 2, names.arg = dtm_d[30:40,]$word,
         col ="lightgreen", main ="Top 5 most frequent words",
@@ -79,55 +76,6 @@ wordcloud(words = dtm_d$word, freq = dtm_d$freq, min.freq = 5,
           max.words=100, random.order=FALSE, rot.per=0.40, 
           colors=brewer.pal(8, "Dark2"))
 
-# Find associations 
-findAssocs(TextDoc_dtm, terms = c("good","work","health"), corlimit = 0.25)		
-# Find associations for words that occur at least 50 times
-findAssocs(TextDoc_dtm, terms = findFreqTerms(TextDoc_dtm, lowfreq = 50), corlimit = 0.25)
-
-# regular sentiment score using get_sentiment() function and method of your choice
-# please note that different methods may have different scales
-syuzhet_vector <- get_sentiment(text, method="syuzhet")
-# see the first row of the vector
-head(syuzhet_vector)
-# see summary statistics of the vector
-summary(syuzhet_vector)
-
-# bing
-bing_vector <- get_sentiment(text, method="bing")
-head(bing_vector)
-summary(bing_vector)
-#affin
-afinn_vector <- get_sentiment(text, method="afinn")
-head(afinn_vector)
-summary(afinn_vector)
-
-#compare the first row of each vector using sign function
-rbind(
-  sign(head(syuzhet_vector)),
-  sign(head(bing_vector)),
-  sign(head(afinn_vector))
-)
-
-# run nrc sentiment analysis to return data frame with each row classified as one of the following
-# emotions, rather than a score: 
-# anger, anticipation, disgust, fear, joy, sadness, surprise, trust 
-# It also counts the number of positive and negative emotions found in each row
-d<-get_nrc_sentiment(text)
-# head(d,10) - to see top 10 lines of the get_nrc_sentiment dataframe
-head (d,10)
-
-#transpose
-td<-data.frame(t(d))
-#The function rowSums computes column sums across rows for each level of a grouping variable.
-td_new <- data.frame(rowSums(td[2:253]))
-#Transformation and cleaning
-names(td_new)[1] <- "count"
-td_new <- cbind("sentiment" = rownames(td_new), td_new)
-rownames(td_new) <- NULL
-td_new2<-td_new[1:8,]
-#Plot One - count of words associated with each sentiment
-quickplot(sentiment, data=td_new2, weight=count, geom="bar", fill=sentiment, ylab="count")+ggtitle("Survey sentiments")
-
 tail(myData,7)
 
 # che tipologie di ansia, quante ?
@@ -138,13 +86,42 @@ head(dataForGen,100)
 colnames(dataForGen)
 
 i = 0
-c = 0
 lung = nrow(dataForGen)
 for (i in lung : (i + 1)){
   if(dataForGen[i,1]=="survivorsofabuse")
     c = c+1
 }
 print(c)
+
+anxiety = 0
+stress = 0
+domesticviolence = 0
+assistance = 0
+relationships = 0
+survivorsofabuse = 0
+ptsd = 0
+homeless = 0
+i = 0
+lung = nrow(dataForGen)
+for (i in lung : (i + 1)){
+  if(dataForGen[i,1]=="anxiety"){anxiety = anxiety+1}
+  if(dataForGen[i,1]=="stress"){stress = stress+1}
+  if(dataForGen[i,1]=="domesticviolence"){domesticviolence = domesticviolence+1}
+  if(dataForGen[i,1]=="assistance"){assistance = assistance+1}
+  if(dataForGen[i,1]=="relationships"){relationships = relationships+1}
+  if(dataForGen[i,1]=="survivorsofabuse"){survivorsofabuse = survivorsofabuse+1}
+  if(dataForGen[i,1]=="ptsd"){ptsd = ptsd+1}
+  if(dataForGen[i,1]=="homeless"){homeless = homeless+1}
+}
+matrice = matrix(c(anxiety, stress, domesticviolence, assistance, relationships, survivorsofabuse, ptsd, homeless),ncol = 1
+)
+
+matrice <- sort(rowSums(matrice),decreasing=TRUE)
+
+rownames(matrice) = c("anxiety", "stress", "domesticviolence", "assistance", "relationships", "survivorsofabuse", "ptsd", "homeless")
+par(las=2)
+barplot(matrice[,1], main="Frequnza degli argomenti", horiz=TRUE,
+        names.arg=c("anxiety", "stress", "domesticviolence", "assistance", "relationships", "survivorsofabuse", "ptsd", "homeless"))
 
 #crea il dataset.csv da utilizzare con lo sketch in processing per generare un opera
 write.csv(myData[, c('subreddit')],'gen_art/dataset_for_genart.csv')
