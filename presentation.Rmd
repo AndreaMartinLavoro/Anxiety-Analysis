@@ -25,9 +25,11 @@ myData <- read.csv(url)
 ```
 ## Intro
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Dataset
+
+
 
 ## Il progetto 
 è composto dai seguenti file e directory
@@ -41,7 +43,8 @@ i file e le directory fondamentali sono :
 - presentation.Rmd - la presentazione in R markdown
 - project.R - lo script R utilizzato per la prima stesura del codice di analisi prima dell'inserimento nella presentazione in R markdown
 
-## Dataset
+## Analisi Esplorativa
+
 ```{r echo=TRUE}
 summary(myData)
 str(myData$text)
@@ -54,8 +57,6 @@ head(myData,7)
 tail(myData,7)
 
 ```
-
-## Analisi Esplorativa
 
 ## Text mining
 
@@ -85,6 +86,11 @@ set.seed(1234)
 wordcloud(words = dtm_d$word, freq = dtm_d$freq, min.freq = 5,
           max.words=200, random.order=FALSE, rot.per=0.40, 
           colors=brewer.pal(8, "Dark2"))
+```
+
+## Generative Art
+
+```{}
 ```
 
 ##
