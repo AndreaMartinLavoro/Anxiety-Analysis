@@ -182,35 +182,236 @@ slide:not(.current) .plotly.html-widget{
 
 <p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.</p>
 
+</article></slide><slide class=""><hgroup><h2>BASH Test</h2></hgroup><article  id="bash-test">
+
+<pre class = 'prettyprint lang-bash'>ls</pre>
+
+<pre >## Project_147800.Rproj
+## README.md
+## dataset
+## img
+## presentation.Rmd
+## presentation.html
+## style.css</pre>
+
 </article></slide><slide class=""><hgroup><h2>Dataset Test</h2></hgroup><article  id="dataset-test">
 
 <pre class = 'prettyprint lang-r'>summary(myData)</pre>
 
-<pre >##       Year      Industry_aggregation_NZSIOC Industry_code_NZSIOC
-##  Min.   :2013   Length:37080                Length:37080        
-##  1st Qu.:2015   Class :character            Class :character    
-##  Median :2016   Mode  :character            Mode  :character    
-##  Mean   :2016                                                   
-##  3rd Qu.:2018                                                   
-##  Max.   :2020                                                   
-##  Industry_name_NZSIOC    Units           Variable_code      Variable_name     
-##  Length:37080         Length:37080       Length:37080       Length:37080      
-##  Class :character     Class :character   Class :character   Class :character  
-##  Mode  :character     Mode  :character   Mode  :character   Mode  :character  
-##                                                                               
-##                                                                               
-##                                                                               
-##  Variable_category     Value           Industry_code_ANZSIC06
-##  Length:37080       Length:37080       Length:37080          
-##  Class :character   Class :character   Class :character      
-##  Mode  :character   Mode  :character   Mode  :character      
-##                                                              
-##                                                              
-## </pre>
+<pre >##   subreddit           post_id          sentence_range         text          
+##  Length:2838        Length:2838        Length:2838        Length:2838       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##        id              label          confidence     social_timestamp   
+##  Min.   :    4.0   Min.   :0.0000   Min.   :0.4286   Min.   :1.483e+09  
+##  1st Qu.:  926.2   1st Qu.:0.0000   1st Qu.:0.6000   1st Qu.:1.510e+09  
+##  Median : 1891.5   Median :1.0000   Median :0.8000   Median :1.517e+09  
+##  Mean   :13752.0   Mean   :0.5243   Mean   :0.8090   Mean   :1.518e+09  
+##  3rd Qu.:25473.8   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.531e+09  
+##  Max.   :55757.0   Max.   :1.0000   Max.   :1.0000   Max.   :1.543e+09  
+##   social_karma       syntax_ari      lex_liwc_WC  lex_liwc_Analytic
+##  Min.   :   0.00   Min.   :-6.620   Min.   :  5   Min.   : 1.00    
+##  1st Qu.:   2.00   1st Qu.: 2.464   1st Qu.: 65   1st Qu.:12.41    
+##  Median :   5.00   Median : 4.322   Median : 81   Median :29.42    
+##  Mean   :  18.26   Mean   : 4.684   Mean   : 86   Mean   :35.24    
+##  3rd Qu.:  10.00   3rd Qu.: 6.506   3rd Qu.:101   3rd Qu.:55.06    
+##  Max.   :1435.00   Max.   :24.074   Max.   :310   Max.   :99.00    
+##  lex_liwc_Clout  lex_liwc_Authentic lex_liwc_Tone    lex_liwc_WPS   
+##  Min.   : 1.00   Min.   : 1.00      Min.   : 1.00   Min.   :  2.40  
+##  1st Qu.:12.13   1st Qu.:41.07      1st Qu.: 1.42   1st Qu.: 13.40  
+##  Median :33.52   Median :80.71      Median :25.77   Median : 16.77  
+##  Mean   :40.95   Mean   :67.04      Mean   :33.43   Mean   : 18.19  
+##  3rd Qu.:69.32   3rd Qu.:96.18      3rd Qu.:61.55   3rd Qu.: 21.00  
+##  Max.   :99.00   Max.   :99.00      Max.   :99.00   Max.   :233.00  
+##  lex_liwc_Sixltr  lex_liwc_Dic    lex_liwc_function lex_liwc_pronoun
+##  Min.   : 0.00   Min.   : 27.91   Min.   : 4.17     Min.   : 0.00   
+##  1st Qu.:11.11   1st Qu.: 90.09   1st Qu.:54.84     1st Qu.:16.05   
+##  Median :14.29   Median : 93.43   Median :59.26     Median :19.84   
+##  Mean   :14.86   Mean   : 92.35   Mean   :58.60     Mean   :19.77   
+##  3rd Qu.:18.02   3rd Qu.: 95.77   3rd Qu.:63.02     3rd Qu.:23.52   
+##  Max.   :65.12   Max.   :100.00   Max.   :77.78     Max.   :44.44   
+##  lex_liwc_ppron    lex_liwc_i      lex_liwc_we       lex_liwc_you    
+##  Min.   : 0.00   Min.   : 0.000   Min.   : 0.0000   Min.   : 0.0000  
+##  1st Qu.:10.72   1st Qu.: 6.060   1st Qu.: 0.0000   1st Qu.: 0.0000  
+##  Median :13.79   Median : 9.380   Median : 0.0000   Median : 0.0000  
+##  Mean   :13.99   Mean   : 9.066   Mean   : 0.7647   Mean   : 0.8658  
+##  3rd Qu.:17.18   3rd Qu.:12.200   3rd Qu.: 1.0475   3rd Qu.: 0.7975  
+##  Max.   :30.77   Max.   :30.000   Max.   :12.9600   Max.   :25.0000  
+##  lex_liwc_shehe   lex_liwc_they     lex_liwc_ipron   lex_liwc_article
+##  Min.   : 0.000   Min.   : 0.0000   Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.: 0.000   1st Qu.: 0.0000   1st Qu.: 3.330   1st Qu.: 3.120  
+##  Median : 0.950   Median : 0.0000   Median : 5.360   Median : 4.760  
+##  Mean   : 2.708   Mean   : 0.5827   Mean   : 5.769   Mean   : 4.938  
+##  3rd Qu.: 4.760   3rd Qu.: 0.8800   3rd Qu.: 7.777   3rd Qu.: 6.590  
+##  Max.   :23.470   Max.   :12.8600   Max.   :21.430   Max.   :15.530  
+##  lex_liwc_prep   lex_liwc_auxverb lex_liwc_adverb  lex_liwc_conj   
+##  Min.   : 0.00   Min.   : 0.00    Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.:11.00   1st Qu.: 7.81    1st Qu.: 3.850   1st Qu.: 5.770  
+##  Median :13.45   Median :10.06    Median : 5.800   Median : 7.660  
+##  Mean   :13.36   Mean   :10.31    Mean   : 6.046   Mean   : 7.599  
+##  3rd Qu.:15.79   3rd Qu.:12.50    3rd Qu.: 8.000   3rd Qu.: 9.380  
+##  Max.   :29.63   Max.   :25.00    Max.   :21.430   Max.   :20.690  
+##  lex_liwc_negate   lex_liwc_verb    lex_liwc_adj    lex_liwc_compare
+##  Min.   : 0.0000   Min.   : 0.00   Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.: 0.9725   1st Qu.:16.28   1st Qu.: 2.505   1st Qu.: 0.930  
+##  Median : 1.9500   Median :19.32   Median : 4.080   Median : 1.890  
+##  Mean   : 2.2629   Mean   :19.43   Mean   : 4.363   Mean   : 2.287  
+##  3rd Qu.: 3.3700   3rd Qu.:22.41   3rd Qu.: 5.880   3rd Qu.: 3.390  
+##  Max.   :12.9000   Max.   :40.00   Max.   :18.180   Max.   :15.150  
+##  lex_liwc_interrog lex_liwc_number  lex_liwc_quant   lex_liwc_affect 
+##  Min.   : 0.000    Min.   : 0.000   Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.: 0.000    1st Qu.: 0.000   1st Qu.: 1.080   1st Qu.: 3.570  
+##  Median : 1.390    Median : 1.030   Median : 1.960   Median : 5.560  
+##  Mean   : 1.608    Mean   : 1.444   Mean   : 2.246   Mean   : 6.097  
+##  3rd Qu.: 2.440    3rd Qu.: 2.200   3rd Qu.: 3.200   3rd Qu.: 8.000  
+##  Max.   :17.860    Max.   :25.000   Max.   :11.630   Max.   :37.500  
+##  lex_liwc_posemo   lex_liwc_negemo   lex_liwc_anx     lex_liwc_anger   
+##  Min.   : 0.0000   Min.   : 0.000   Min.   : 0.0000   Min.   : 0.0000  
+##  1st Qu.: 0.9625   1st Qu.: 1.140   1st Qu.: 0.0000   1st Qu.: 0.0000  
+##  Median : 2.1700   Median : 2.700   Median : 0.0000   Median : 0.0000  
+##  Mean   : 2.6979   Mean   : 3.305   Mean   : 0.9142   Mean   : 0.9285  
+##  3rd Qu.: 3.9000   3rd Qu.: 4.840   3rd Qu.: 1.4500   3rd Qu.: 1.4700  
+##  Max.   :20.0000   Max.   :37.500   Max.   :25.0000   Max.   :15.7900  
+##   lex_liwc_sad     lex_liwc_social  lex_liwc_family   lex_liwc_friend  
+##  Min.   : 0.0000   Min.   : 0.000   Min.   : 0.0000   Min.   : 0.0000  
+##  1st Qu.: 0.0000   1st Qu.: 5.815   1st Qu.: 0.0000   1st Qu.: 0.0000  
+##  Median : 0.0000   Median :10.285   Median : 0.0000   Median : 0.0000  
+##  Mean   : 0.5985   Mean   :10.828   Mean   : 0.7452   Mean   : 0.5552  
+##  3rd Qu.: 1.0500   3rd Qu.:15.127   3rd Qu.: 1.1000   3rd Qu.: 0.9900  
+##  Max.   :12.5000   Max.   :37.760   Max.   :17.9500   Max.   :10.2800  
+##  lex_liwc_female  lex_liwc_male    lex_liwc_cogproc lex_liwc_insight
+##  Min.   : 0.000   Min.   : 0.000   Min.   : 0.00    Min.   : 0.000  
+##  1st Qu.: 0.000   1st Qu.: 0.000   1st Qu.: 9.84    1st Qu.: 1.250  
+##  Median : 0.000   Median : 0.000   Median :13.27    Median : 2.480  
+##  Mean   : 1.577   Mean   : 1.977   Mean   :13.59    Mean   : 2.855  
+##  3rd Qu.: 1.890   3rd Qu.: 3.030   3rd Qu.:17.04    3rd Qu.: 4.138  
+##  Max.   :18.060   Max.   :19.400   Max.   :37.50    Max.   :13.240  
+##  lex_liwc_cause   lex_liwc_discrep lex_liwc_tentat  lex_liwc_certain
+##  Min.   : 0.000   Min.   : 0.000   Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.: 0.000   1st Qu.: 0.000   1st Qu.: 1.450   1st Qu.: 0.000  
+##  Median : 1.430   Median : 1.520   Median : 2.930   Median : 1.280  
+##  Mean   : 1.726   Mean   : 1.947   Mean   : 3.325   Mean   : 1.544  
+##  3rd Qu.: 2.680   3rd Qu.: 2.940   3rd Qu.: 4.760   3rd Qu.: 2.400  
+##  Max.   :12.500   Max.   :12.500   Max.   :16.670   Max.   :11.860  
+##  lex_liwc_differ  lex_liwc_percept   lex_liwc_see     lex_liwc_hear   
+##  Min.   : 0.000   Min.   : 0.0000   Min.   : 0.0000   Min.   :0.0000  
+##  1st Qu.: 2.170   1st Qu.: 0.7425   1st Qu.: 0.0000   1st Qu.:0.0000  
+##  Median : 3.730   Median : 1.7200   Median : 0.0000   Median :0.0000  
+##  Mean   : 3.972   Mean   : 2.2470   Mean   : 0.5731   Mean   :0.6136  
+##  3rd Qu.: 5.470   3rd Qu.: 3.2300   3rd Qu.: 1.0300   3rd Qu.:1.0500  
+##  Max.   :18.420   Max.   :22.2200   Max.   :10.8700   Max.   :9.4300  
+##  lex_liwc_feel      lex_liwc_bio    lex_liwc_body     lex_liwc_health 
+##  Min.   : 0.0000   Min.   : 0.000   Min.   : 0.0000   Min.   : 0.000  
+##  1st Qu.: 0.0000   1st Qu.: 0.690   1st Qu.: 0.0000   1st Qu.: 0.000  
+##  Median : 0.0000   Median : 1.960   Median : 0.0000   Median : 0.700  
+##  Mean   : 0.9122   Mean   : 2.611   Mean   : 0.7086   Mean   : 1.247  
+##  3rd Qu.: 1.4300   3rd Qu.: 3.757   3rd Qu.: 1.0875   3rd Qu.: 1.820  
+##  Max.   :22.2200   Max.   :44.440   Max.   :21.1100   Max.   :13.110  
+##  lex_liwc_sexual  lex_liwc_ingest   lex_liwc_drives  lex_liwc_affiliation
+##  Min.   :0.0000   Min.   : 0.0000   Min.   : 0.000   Min.   : 0.000      
+##  1st Qu.:0.0000   1st Qu.: 0.0000   1st Qu.: 5.175   1st Qu.: 0.000      
+##  Median :0.0000   Median : 0.0000   Median : 7.410   Median : 1.915      
+##  Mean   :0.2141   Mean   : 0.4054   Mean   : 7.885   Mean   : 2.737      
+##  3rd Qu.:0.0000   3rd Qu.: 0.0000   3rd Qu.:10.197   3rd Qu.: 4.050      
+##  Max.   :7.3400   Max.   :33.3300   Max.   :37.500   Max.   :23.080      
+##  lex_liwc_achieve lex_liwc_power   lex_liwc_reward lex_liwc_risk    
+##  Min.   : 0.000   Min.   : 0.000   Min.   :0.000   Min.   : 0.0000  
+##  1st Qu.: 0.000   1st Qu.: 1.065   1st Qu.:0.000   1st Qu.: 0.0000  
+##  Median : 1.120   Median : 2.130   Median :1.170   Median : 0.0000  
+##  Mean   : 1.373   Mean   : 2.414   Mean   :1.369   Mean   : 0.7201  
+##  3rd Qu.: 2.040   3rd Qu.: 3.450   3rd Qu.:2.110   3rd Qu.: 1.2800  
+##  Max.   :16.670   Max.   :13.330   Max.   :7.550   Max.   :25.0000  
+##  lex_liwc_focuspast lex_liwc_focuspresent lex_liwc_focusfuture lex_liwc_relativ
+##  Min.   : 0.000     Min.   : 0.00         Min.   : 0.000       Min.   : 0.00   
+##  1st Qu.: 1.740     1st Qu.: 8.20         1st Qu.: 0.000       1st Qu.:10.45   
+##  Median : 4.245     Median :12.37         Median : 0.940       Median :14.01   
+##  Mean   : 5.059     Mean   :12.32         Mean   : 1.183       Mean   :14.25   
+##  3rd Qu.: 7.545     3rd Qu.:16.07         3rd Qu.: 1.790       3rd Qu.:17.86   
+##  Max.   :26.320     Max.   :35.71         Max.   :11.860       Max.   :39.29   
+##  lex_liwc_motion   lex_liwc_space   lex_liwc_time    lex_liwc_work   
+##  Min.   : 0.0000   Min.   : 0.000   Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.: 0.6425   1st Qu.: 3.960   1st Qu.: 3.450   1st Qu.: 0.000  
+##  Median : 1.6900   Median : 5.970   Median : 5.680   Median : 1.160  
+##  Mean   : 2.0044   Mean   : 6.295   Mean   : 6.199   Mean   : 1.876  
+##  3rd Qu.: 3.0300   3rd Qu.: 8.275   3rd Qu.: 8.470   3rd Qu.: 2.780  
+##  Max.   :14.5500   Max.   :21.430   Max.   :27.270   Max.   :20.000  
+##  lex_liwc_leisure  lex_liwc_home     lex_liwc_money    lex_liwc_relig  
+##  Min.   : 0.0000   Min.   : 0.0000   Min.   : 0.0000   Min.   :0.0000  
+##  1st Qu.: 0.0000   1st Qu.: 0.0000   1st Qu.: 0.0000   1st Qu.:0.0000  
+##  Median : 0.0000   Median : 0.0000   Median : 0.0000   Median :0.0000  
+##  Mean   : 0.7851   Mean   : 0.6351   Mean   : 0.7862   Mean   :0.1157  
+##  3rd Qu.: 1.2300   3rd Qu.: 1.0750   3rd Qu.: 1.0200   3rd Qu.:0.0000  
+##  Max.   :13.3300   Max.   :13.7900   Max.   :14.9300   Max.   :8.2400  
+##  lex_liwc_death    lex_liwc_informal lex_liwc_swear   lex_liwc_netspeak
+##  Min.   : 0.0000   Min.   : 0.0000   Min.   :0.0000   Min.   : 0.0000  
+##  1st Qu.: 0.0000   1st Qu.: 0.0000   1st Qu.:0.0000   1st Qu.: 0.0000  
+##  Median : 0.0000   Median : 0.0000   Median :0.0000   Median : 0.0000  
+##  Mean   : 0.1418   Mean   : 0.8257   Mean   :0.2465   Mean   : 0.2552  
+##  3rd Qu.: 0.0000   3rd Qu.: 1.3300   3rd Qu.:0.0000   3rd Qu.: 0.0000  
+##  Max.   :11.1100   Max.   :13.0400   Max.   :8.3300   Max.   :11.1100  
+##  lex_liwc_assent  lex_liwc_nonflu  lex_liwc_filler    lex_liwc_AllPunc
+##  Min.   :0.0000   Min.   :0.0000   Min.   : 0.00000   Min.   :  3.12  
+##  1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.: 0.00000   1st Qu.: 12.05  
+##  Median :0.0000   Median :0.0000   Median : 0.00000   Median : 15.52  
+##  Mean   :0.1191   Mean   :0.1248   Mean   : 0.04986   Mean   : 17.05  
+##  3rd Qu.:0.0000   3rd Qu.:0.0000   3rd Qu.: 0.00000   3rd Qu.: 19.73  
+##  Max.   :8.7000   Max.   :3.8500   Max.   :11.11000   Max.   :420.41  
+##  lex_liwc_Period  lex_liwc_Comma   lex_liwc_Colon    lex_liwc_SemiC   
+##  Min.   : 0.000   Min.   : 0.000   Min.   : 0.0000   Min.   : 0.0000  
+##  1st Qu.: 4.210   1st Qu.: 1.430   1st Qu.: 0.0000   1st Qu.: 0.0000  
+##  Median : 5.590   Median : 3.265   Median : 0.0000   Median : 0.0000  
+##  Mean   : 6.066   Mean   : 3.573   Mean   : 0.2188   Mean   : 0.1234  
+##  3rd Qu.: 7.250   3rd Qu.: 5.190   3rd Qu.: 0.0000   3rd Qu.: 0.0000  
+##  Max.   :47.060   Max.   :41.860   Max.   :20.0000   Max.   :10.5300  
+##  lex_liwc_QMark     lex_liwc_Exclam   lex_liwc_Dash     lex_liwc_Quote   
+##  Min.   :  0.0000   Min.   : 0.0000   Min.   : 0.0000   Min.   : 0.0000  
+##  1st Qu.:  0.0000   1st Qu.: 0.0000   1st Qu.: 0.0000   1st Qu.: 0.0000  
+##  Median :  0.0000   Median : 0.0000   Median : 0.0000   Median : 0.0000  
+##  Mean   :  0.5191   Mean   : 0.1925   Mean   : 0.4868   Mean   : 0.4735  
+##  3rd Qu.:  0.0000   3rd Qu.: 0.0000   3rd Qu.: 0.0000   3rd Qu.: 0.0000  
+##  Max.   :105.4100   Max.   :40.0000   Max.   :55.5600   Max.   :12.5000  
+##  lex_liwc_Apostro lex_liwc_Parenth lex_liwc_OtherP    lex_dal_max_pleasantness
+##  Min.   : 0.000   Min.   : 0.000   Min.   :  0.0000   Min.   :2.000           
+##  1st Qu.: 1.150   1st Qu.: 0.000   1st Qu.:  0.0000   1st Qu.:2.714           
+##  Median : 2.725   Median : 0.000   Median :  0.0000   Median :2.800           
+##  Mean   : 3.176   Mean   : 0.779   Mean   :  1.4443   Mean   :2.797           
+##  3rd Qu.: 4.760   3rd Qu.: 1.410   3rd Qu.:  0.9075   3rd Qu.:3.000           
+##  Max.   :25.000   Max.   :41.940   Max.   :391.8400   Max.   :3.000           
+##  lex_dal_max_activation lex_dal_max_imagery lex_dal_min_pleasantness
+##  Min.   :1.857          Min.   :2.000       Min.   :1.000           
+##  1st Qu.:2.625          1st Qu.:3.000       1st Qu.:1.000           
+##  Median :2.700          Median :3.000       Median :1.000           
+##  Mean   :2.705          Mean   :2.948       Mean   :1.088           
+##  3rd Qu.:2.857          3rd Qu.:3.000       3rd Qu.:1.143           
+##  Max.   :3.000          Max.   :3.000       Max.   :1.900           
+##  lex_dal_min_activation lex_dal_min_imagery lex_dal_avg_activation
+##  Min.   :1.000          Min.   :1.0         Min.   :1.485         
+##  1st Qu.:1.000          1st Qu.:1.0         1st Qu.:1.691         
+##  Median :1.143          Median :1.0         Median :1.721         
+##  Mean   :1.120          Mean   :1.0         Mean   :1.723         
+##  3rd Qu.:1.143          3rd Qu.:1.0         3rd Qu.:1.752         
+##  Max.   :1.500          Max.   :1.2         Max.   :2.007         
+##  lex_dal_avg_imagery lex_dal_avg_pleasantness social_upvote_ratio
+##  Min.   :1.200       Min.   :1.561            Min.   :0.1400     
+##  1st Qu.:1.470       1st Qu.:1.842            1st Qu.:0.7500     
+##  Median :1.530       Median :1.878            Median :0.8900     
+##  Mean   :1.536       Mean   :1.879            Mean   :0.8435     
+##  3rd Qu.:1.596       3rd Qu.:1.916            3rd Qu.:1.0000     
+##  Max.   :2.067       Max.   :2.158            Max.   :1.0000     
+##  social_num_comments syntax_fk_grade    sentiment       
+##  Min.   :  0.000     Min.   :-1.918   Min.   :-1.00000  
+##  1st Qu.:  2.000     1st Qu.: 3.730   1st Qu.:-0.07222  
+##  Median :  5.000     Median : 5.210   Median : 0.04482  
+##  Mean   :  9.949     Mean   : 5.449   Mean   : 0.04074  
+##  3rd Qu.: 10.000     3rd Qu.: 6.855   3rd Qu.: 0.16667  
+##  Max.   :416.000     Max.   :21.199   Max.   : 1.00000</pre>
 
-<pre class = 'prettyprint lang-r'>dim(iris)</pre>
+<pre class = 'prettyprint lang-r'>dim(myData)</pre>
 
-<pre >## [1] 150   5</pre>
+<pre >## [1] 2838  116</pre>
 
 </article></slide><slide class=""><hgroup><h2>Slide with Bullets</h2></hgroup><article  id="slide-with-bullets">
 
