@@ -12,7 +12,7 @@ head(myData,7)
 
 myData[, c('subreddit', 'post_id', 'text', "id", "confidence", "sentiment")]
 
-write.csv(myData[, c('subreddit', 'post_id', 'text', "id", "confidence", "sentiment")],'dataset/dataset_cleaned.csv')
+write.csv(myData[, c('subreddit', 'post_id', 'text', "id", "sentiment")],'dataset/dataset_cleaned.csv')
 
 myData[, c('text')]
 
@@ -125,3 +125,13 @@ barplot(matrice[,1], main="Frequnza degli argomenti", horiz=TRUE,
 
 #crea il dataset.csv da utilizzare con lo sketch in processing per generare un opera
 write.csv(myData[, c('subreddit')],'gen_art/dataset_for_genart.csv')
+
+
+#sentiment anlysis - grazie a queste analisi metodologiche si riesce a capire il Sentiment degli utenti rispetto al brand in un dato periodo temporale e in un contesto definito.
+
+library(ggplot2)
+url <- "dataset/dataset_cleaned.csv"
+dati <- read.csv(url)
+frame <- as.data.frame.matrix(dati)
+
+ggplot(data = frame) + geom_point(mapping = aes(x = sentiment, y = subreddit))

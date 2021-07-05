@@ -27,6 +27,15 @@ myData <- read.csv(url)
 Troppe informazioni, troppo potere alla tecnologia e la velocità con cui noi assimiliamo informazioni grazie ad essa è spaventosa.
 Ciò può procurare stress e ansia.
 Perchè non chiedere aiuto su Reddit?
+<div style="text-align:center;vertical-align:middle;">
+<img  width = "50%" height = "auto" src="img/tech.png"/>
+</div>
+
+## Le domande
+- Tra i vari argomenti dei post, quale è il dominante?
+- Come interpreta una macchina i vari post all'interno di un blog?
+- Quali sono le parole più usate?
+- Quale è il volto dell'ansia?
 
 ## Reddit non solo un forum
 Reddit è un social news aggregator, un misto di piattaforma di discussione e distributore di link, diviso in forum, i cosiddetti subreddit. Gli utenti, i redditor, sono creatori di contenuti, consumatori e curatori. Utilizzando un sistema a punti composto da upvotes e downvotes, la comunità determina quali contenuti e discussioni sono importanti: questi verranno visualizzati nella parte superiore del feed. La piattaforma è in gran parte autogestita, i moderatori fungono da guardie del forum.
@@ -60,7 +69,7 @@ i file e le directory fondamentali sono :
 - presentation.Rmd - la presentazione in R markdown
 - project.R - lo script R utilizzato per la prima stesura del codice di analisi prima dell'inserimento nella presentazione in R markdown
 
-## Analisi Esplorativay
+## Analisi Esplorativa
 Una prima panoramica dei nostri dati
 ```{r echo=TRUE}
 summary(myData)
@@ -154,8 +163,25 @@ rownames(matrice) = c("anxiety", "stress", "domesticviolence", "assistance", "re
 
 ```{r echo = FALSE , warning=FALSE}
 par(las=2)
-barplot(matrice[,1], main="Frequnza degli argomenti", horiz=TRUE,
+barplot(matrice[,1], main="Frequenza degli argomenti", horiz=TRUE,
         names.arg=c("anxiety", "stress", "domesticviolence", "assistance", "relationships", "survivorsofabuse", "ptsd", "homeless"))
+```
+
+## Sentiment Analysis
+Per procedere in maniera più veloce scarto i dati che al momento non utilizzo
+```{r echo = TRUE , warning=FALSE}
+write.csv(myData[, c('subreddit', 'post_id', 'text', "id", "sentiment")],'dataset/dataset_cleaned.csv')
+```
+
+Ed ora provo a rispondere alla seguente domanda
+Come interpreta una macchina i vari post all'interno di un blog?
+```{r echo = TRUE , warning=FALSE}
+library(ggplot2)
+url <- "dataset/dataset_cleaned.csv"
+dati <- read.csv(url)
+frame <- as.data.frame.matrix(dati)
+
+ggplot(data = frame) + geom_point(mapping = aes(x = sentiment, y = subreddit))
 ```
 
 ## Text mining
@@ -236,88 +262,7 @@ wordcloud(words = dtm_d$word, freq = dtm_d$freq, min.freq = 5,
 write.csv(myData[, c('subreddit')],'gen_art/dataset_for_genart.csv')
 ```
 
-<h3>Questo è il codice che ha generato l'immagine qui sopra:</h3>
-```{}
-Table table;
-int gridSize = 100;
-int iterations = 12;
-int rotation = 10;
-String stx = "";
-
-void setup() {
-   size(600, 600);
-   background(255);
-   stroke(0, 80);
-   rectMode(CENTER);
-   noLoop();
-   //carico il "dataset"
-   table = loadTable("dataset_for_genart.csv", "header");
-
-}
-void draw() {
-  for (int x = gridSize/2; x < width; x+=gridSize) {
-    for (int y = gridSize/2; y < height; y+=gridSize) {
-      float rectSize = gridSize-10;
-      pushMatrix();
-      translate(x, y);
-      //genero con il primo algoritmo il background
-      for (TableRow row : table.rows()) {
-          stx = row.getString("x");
-          if(stx == "assistance"){
-             for (int i = 0; i < iterations; i++) {
-                fill (0,random(20));
-                rect(0, 0, rectSize, rectSize);
-                rectSize = rectSize / (sin(radians(rotation)) + cos(radians(rotation)));
-                rotate(radians(rotation));
-            }
-          }
-          if(stx == "relationships"){
-            for (int i = 0; i < iterations; i++) {
-                fill (0,random(30));
-                rect(1, 5, rectSize, rectSize);
-                rectSize = rectSize / (sin(radians(rotation)) + cos(radians(rotation)));
-                rotate(radians(rotation));
-            }
-          }
-          else{
-            for (int i = 0; i < iterations; i++) {
-                fill (0,random(10));
-                rect(3, 7, rectSize, rectSize);
-                rectSize = rectSize / (sin(radians(rotation)) + cos(radians(rotation)));
-                rotate(radians(rotation));
-            }
-          }   
-      }
-      popMatrix();
-    }
-  }
-  //genero con il secondo algoritmo il foreground
-  for (TableRow row : table.rows()) {
-      stx = row.getString("x");
-      if (stx == "ptsd"){
-        for (int x = gridSize; x < width; x += gridSize) {
-          for (int y = gridSize; y < height; y += gridSize) {
-              float circleSize = random(gridSize*0.3, gridSize);
-              fill(random(255));
-              ellipse(x, y, circleSize, circleSize);
-      }}}
-      if (stx == "survivorsofabuse"){
-        for (int x = gridSize; x < width; x += gridSize) {
-          for (int y = gridSize; y < height; y += gridSize) {
-              float circleSize = random(gridSize*0.3, gridSize);
-              fill(random(144));
-              ellipse(y, x, circleSize, circleSize);
-      }}}
-      else{
-        for (int x = gridSize; x < width; x += gridSize) {
-          for (int y = gridSize; y < height; y += gridSize) {
-              float circleSize = random(gridSize*0.3, gridSize);
-              fill(random(221));
-              ellipse(y+1, x, circleSize, circleSize);
-      }}}
-  }
-}
-```
+Il file.csv viene passato ad uno sketch in processing che lo trasforma in un immagine.
 
 ## Note
 
