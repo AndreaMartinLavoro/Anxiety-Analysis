@@ -21,10 +21,18 @@ Perchè non chiedere aiuto su Reddit?
 - Sentiment Analysis
 - Generative Art
 
-#Linguaggi
+# Linguaggi
 - R
 - Processing
 - Rmd/HTML
+
+# Qualche Foto
+
+<img width="441" alt="image" src="https://user-images.githubusercontent.com/62328337/124516973-27cd1b00-dde3-11eb-90e6-69253afaca3d.png">
+###### WordCloud
+
+![genart](https://user-images.githubusercontent.com/62328337/124517046-47fcda00-dde3-11eb-88d6-8d1f756b90f7.png)
+###### Generative Art
 
 # Note
 - link del dataset : https://www.kaggle.com/ruchi798/stress-analysis-in-social-media
