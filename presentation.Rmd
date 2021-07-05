@@ -28,7 +28,7 @@ Troppe informazioni, troppo potere alla tecnologia e la velocità con cui noi as
 Ciò può procurare stress e ansia.
 Perchè non chiedere aiuto su Reddit?
 <div style="text-align:center;vertical-align:middle;">
-<img  width = "50%" height = "auto" src="img/tech.png"/>
+<img  width = "70%" height = "auto" src="img/tech.png"/>
 </div>
 
 ## Le domande
