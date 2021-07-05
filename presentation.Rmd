@@ -32,10 +32,10 @@ Perchè non chiedere aiuto su Reddit?
 </div>
 
 ## Le domande
-- Tra i vari argomenti dei post, quale è il dominante?
+- Tra i vari argomenti dei post, qual è il dominante?
 - Come interpreta una macchina i vari post all'interno di un blog?
-- Quali sono le parole più usate?
-- Quale è il volto dell'ansia?
+- Quali sono le parole più digitate?
+- Qual è il volto dell'ansia?
 
 ## Reddit non solo un forum
 Reddit è un social news aggregator, un misto di piattaforma di discussione e distributore di link, diviso in forum, i cosiddetti subreddit. Gli utenti, i redditor, sono creatori di contenuti, consumatori e curatori. Utilizzando un sistema a punti composto da upvotes e downvotes, la comunità determina quali contenuti e discussioni sono importanti: questi verranno visualizzati nella parte superiore del feed. La piattaforma è in gran parte autogestita, i moderatori fungono da guardie del forum.
@@ -126,7 +126,7 @@ colnames(dataForGen)
 ```
 
 ## Analisi nello specifico
-Tra i vari argomenti dei post, quale è il dominante?
+Tra i vari argomenti dei post, qual è il dominante?
 ```{r echo = FALSE , warning=FALSE}
 anxiety = 0
 stress = 0
@@ -154,7 +154,7 @@ for (i in lung : (i + 1)){
 }
 ```
 
-creo la matrice e la mostro grficamente con un barplot
+creo la matrice e la mostro graficamente con un barplot
 ```{r echo = TRUE , warning=FALSE}
 matrice = matrix(c(anxiety, stress, domesticviolence, assistance, relationships, survivorsofabuse, ptsd, homeless),ncol = 1
 )
@@ -185,7 +185,7 @@ ggplot(data = frame) + geom_point(mapping = aes(x = sentiment, y = subreddit))
 ```
 
 ## Text mining
-Quali sono le parole più usate?
+Quali sono le parole più digitate?
 Preparazione
 ```{r echo = TRUE , warning=FALSE}
 write.csv(myData[, c('text')],'dataset/dataset_for_textmining.txt')
@@ -237,7 +237,6 @@ barplot(dtm_d[0:10,]$freq, las = 2, names.arg = dtm_d[0:10,]$word,
 set.seed(1234)
 ```
 
-L'arte della comunicazione
 ```{r echo = FALSE , warning=FALSE}
 set.seed(1234)
 wordcloud(words = dtm_d$word, freq = dtm_d$freq, min.freq = 5,
@@ -245,13 +244,15 @@ wordcloud(words = dtm_d$word, freq = dtm_d$freq, min.freq = 5,
           colors=brewer.pal(8, "Dark2"))
 ```
 
+L'arte della comunicazione
+
 - Sii onesto, non provare nemmeno a barare
 - Sii efficace, massimizza l'entropia delle informazioni
 - Sii artistico, rendilo bello
 
 ## Generative Art
 <h5>E se volessimo rispondere alla domanda qui sotto ?</h5>
-<h3>Quale è il volto dell'ansia?</h3>
+<h3>Qual è il volto dell'ansia?</h3>
 <h5>Potrebbe venirci in aiuto l'Arte Generativa</h5>
 <div style="text-align:center;vertical-align:middle;">
 <img  width = "50%" height = "auto" src="img/genart.png"/>
