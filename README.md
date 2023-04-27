@@ -1,9 +1,9 @@
 # Anagrafiche
 ### Martin Andrea
 ## 147800
-#### a.a. 2020/2021
-#### facoltà di IoT, Big Data & Web
-#### corso di Fondamenti di Scienza dei Dati
+### a.a. 2020/2021
+### facoltà di IoT, Big Data & Web
+### corso di Fondamenti di Scienza dei Dati
 
 # Progetto
 Troppe informazioni, troppo potere alla tecnologia e la velocità con cui noi assimiliamo informazioni grazie ad essa è spaventosa.
